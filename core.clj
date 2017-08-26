@@ -58,4 +58,25 @@
 
 (defn this-name [name](str "Hello " name))
 (this-name "Steve") ; "Hello Steve"
-"Hello Steve"
+
+
+; You can also use this shorthand to create functions:
+(def hello2 #(str "Hello " %1))
+(hello2 "Fanny") ; => "Hello Fanny"
+
+; You can have multi-variadic functions, too
+(defn hello3
+  ([] "Hello World")
+  ([name] (str "Hello " name)))
+(hello3 "Jake") ; => "Hello Jake"
+(hello3) ; => "Hello World"
+
+; Functions can pack extra arguments up in a seq for you
+(defn count-args [& args]
+  (str "You passed " (count args) " args: " args))
+(count-args 1 2 3 4 5 8) ; => "You passed 6 args: (1 2 3 4 5 8)"
+
+(defn hello-count [name & args]
+  (str "Hello " name ", you passed " (count args) " extra args"))
+(hello-count "Finn" 1 2 3)
+; => "Hello Finn, you passed 3 extra args"
