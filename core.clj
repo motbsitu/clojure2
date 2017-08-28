@@ -80,3 +80,27 @@
   (str "Hello " name ", you passed " (count args) " extra args"))
 (hello-count "Finn" 1 2 3)
 ; => "Hello Finn, you passed 3 extra args"
+
+;Maps
+; Hash maps and array maps share an interface. Hash maps have faster lookups
+; but don't retain key order.
+(class {:a 1 :b 2 :c 3})
+(class (hash-map :a 1 :b 2 :c 3))
+
+(def keymap {:a 1, :b 2, :c 3})
+keymap ;{:a 1, :b 2, :c 3}
+
+(keymap :b) ;2
+
+(def stringmap {"a" 1, "b" 2, "c" 3})
+ (stringmap "a"); 1
+
+ (stringmap "d") ; => nil
+
+
+(def newkeymap (assoc keymap :d 4))
+newkeymap ;{:a 1, :b 2, :c 3, :d 4}
+
+(dissoc keymap :a :b)
+
+newkeymap2; {:b 2, :c 3}
