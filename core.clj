@@ -104,3 +104,28 @@ newkeymap ;{:a 1, :b 2, :c 3, :d 4}
 (dissoc keymap :a :b)
 
 newkeymap2; {:b 2, :c 3}
+
+;Sets
+
+(class #{1 2 3})
+(set [1 2 3 1 2 3 3 2 1 3 2 1]) ; => #{1 2 3}
+(conj #{1 2 3} 4) ;#{1 4 3 2}
+
+(disj #{4 5 6} 5) ;{4 6}
+
+; Test for existence by using the set as a function:
+(#{1 2 3} 1) ; => 1
+(#{1 2 3} 4) ; => nil
+
+;forms
+(if false "a" "b") ; => "b"
+(if false "a") ; => nil
+
+(let [a 1 b 2]
+  (> a b)) ;false
+
+  (defn print-and-say-hello [name]
+    (print "Saying hello to " name)
+    (str "Hello " name))
+  (print-and-say-hello "Jeff") ;=> "Hello Jeff" (prints "Saying hello to Jeff")
+;or let does same
