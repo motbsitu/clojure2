@@ -144,3 +144,13 @@ newkeymap2; {:b 2, :c 3}
    (filter odd?)
    (into []))
 ;[1 3 5 7 9]
+
+;Learning about threading macros
+(as-> [1 2 3] input
+  (map inc input)
+  (nth input 2)
+  (conj [4 5 6] input [8 9 10]))
+
+  ; map inc input adds one to each
+  ; nth input takes the number in the second position
+  ; then conj (conjoin) all together
