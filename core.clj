@@ -129,3 +129,18 @@ newkeymap2; {:b 2, :c 3}
     (str "Hello " name))
   (print-and-say-hello "Jeff") ;=> "Hello Jeff" (prints "Saying hello to Jeff")
 ;or let does same
+
+; Use the threading macros (-> and ->>) to express transformations of
+; data more clearly.
+(->
+   {:a 1 :b 2}
+   (assoc :c 3)
+   (dissoc :b))
+;{:a 1, :c 3}
+
+(->>
+   (range 10)
+   (map inc)
+   (filter odd?)
+   (into []))
+;[1 3 5 7 9]
