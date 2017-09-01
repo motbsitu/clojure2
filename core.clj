@@ -154,3 +154,24 @@ newkeymap2; {:b 2, :c 3}
   ; map inc input adds one to each
   ; nth input takes the number in the second position
   ; then conj (conjoin) all together
+
+  ;modules
+
+  (use 'clojure.set)
+  (intersection #{1 2 3} #{2 3 4}) ;{3 2}
+
+;Return a set that is the first set without elements of the remaining sets
+
+  (difference #{1 2 3} #{2 3 4}) ;#{1}
+
+  ; Use require to import a module
+  (require 'clojure.string)
+
+  (clojure.string/blank? "") ;true
+  (clojure.string/blank? "t") ;false
+
+;require clojure.string module and rename as str
+  (require '[clojure.string :as str])
+(str/replace "This is a test." #"[a-o]" str/upper-case) ;"THIs Is A tEst."
+
+;[a-o] regex everything between & including those letters
