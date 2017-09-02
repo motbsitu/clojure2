@@ -175,3 +175,57 @@ newkeymap2; {:b 2, :c 3}
 (str/replace "This is a test." #"[a-o]" str/upper-case) ;"THIs Is A tEst."
 
 ;[a-o] regex everything between & including those letters
+
+; Use import to load a java module
+(import java.util.Date)
+
+(Date.) ; #inst "2017-09-02T00:36:04.502-00:00"
+
+(. (Date.) getTime) ;1504312624282
+
+(.getTime (Date.)) ;same results
+
+; Use / to call static methods
+(System/currentTimeMillis) ; <a timestamp> (system is always present)
+
+(import java.util.Calendar)
+
+(import java.util.Calendar)
+(doto (Calendar/getInstance)
+  (.set 2000 1 1 0 0 0)
+  .getTime) ; => A Date. set to 2000-01-01 00:00:00
+
+
+  ; STM
+  ;;;;;;;;;;;;;;;;;
+
+  ; Software Transactional Memory is the mechanism clojure uses to handle
+  ; persistent state. There are a few constructs in clojure that use this.
+
+  ; An atom is the simplest. Pass it an initial value
+  (def my-atom (atom {:h 7}))
+  my-atom
+  ;{:h 7}
+  (swap! my-atom assoc :a 1)
+  (swap! my-atom assoc :b 2)
+  my-atom
+  ;{:h 7, :b 2, :a 1}
+  @my-atom
+
+
+;Counter
+(def counter (atom 0))
+
+(def counter (atom 0))
+(defn inc-counter []
+  (swap! counter inc))
+
+(inc-counter);1
+(inc-counter);2
+@counter ; 2
+
+;****
+;figure this out
+(inc-counter);1
+(* 3 (inc-counter)) ; 6
+@counter ;2
